@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 // Route files
 app.use(require("./routes"));
+app.use(require("./middleware/error"));
 
 // export app to http server ('./bin/www')
 module.exports = app;

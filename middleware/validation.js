@@ -1,16 +1,24 @@
-const validator = (condition, condition_value, rule_field) => {
+const validator = (condition, condition_value, field_value) => {
+  let isValid;
   switch (condition) {
     case "eq":
-      return rule_field === condition_value;
+      return (isValid = field_value === condition_value);
+
     case "neq":
-      return rule_field !== condition_value;
+      return (isValid = field_value !== condition_value);
+
     case "gt":
-      return rule_field > condition_value;
+      return (isValid = field_value > condition_value);
+
     case "gte":
-      return rule_field >= condition_value;
+      return (isValid = field_value >= condition_value);
+
     case "contains":
-      return rule_field.includes(condition_value);
+      return (isValid = field_value.includes(condition_value));
+
     default:
       console.log(`${condition} is not accepted`);
   }
 };
+
+module.exports = validator;
