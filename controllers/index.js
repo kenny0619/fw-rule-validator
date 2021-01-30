@@ -23,7 +23,10 @@ exports.getMe = asyncHandler(async (req, res) => {
  */
 exports.validateRule = asyncHandler(async (req, res, next) => {
   // obtain data from the json passed to the body
-  const { rule, data } = req.body;
+  const passedData = req.body;
+
+  const rule = passedData.rule;
+  const data = passedData.data;
 
   // check for rule field
   if (!rule) {
@@ -33,9 +36,10 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
       data: null,
     });
   }
-  console.log(rule);
+
   // check that rule is an object
   if (typeof rule !== "object") {
+    console.log(typeof rule);
     return res.status(400).json({
       message: `rule should be an object.`,
       status: "error",
@@ -43,12 +47,14 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
     });
   }
 
-  //destructure rule and field from req.body
-  const { field, condition, condition_value } = rule;
+  //destructure fields from rule
+  const condition_value = rule.condition_value;
+  const field = rule.field;
+  const condition = rule.condition;
 
-  if (!field) {
+  if (!data[field]) {
     return res.status(400).json({
-      message: `field is required.`,
+      message: `field ${field} is missing from data.`,
       status: "error",
       data: null,
     });
