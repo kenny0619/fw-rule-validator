@@ -100,9 +100,12 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
 
   // check for data types of values of field with conditions gt, gte, eq, neq
   if (
-    condition in ["gt", "gte", "eq", "neq"] &&
-    typeof field_value !== "number"
+    condition === "gt" ||
+    condition === "gte" ||
+    condition === "eq" ||
+    (condition === "neq" && typeof field_value !== "number")
   ) {
+    console.log(condition);
     return res.status(400).json({
       message: `${field} should be a number.`,
       status: "error",
