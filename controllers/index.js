@@ -48,10 +48,12 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
   }
 
   //destructure fields from rule
+  // { condition, condition_value, field } = rule;
   const condition_value = rule.condition_value;
   const field = rule.field;
   const condition = rule.condition;
 
+  // check to see that all rule fields are provided
   if (!data[field]) {
     return res.status(400).json({
       message: `field ${field} is missing from data.`,
@@ -76,7 +78,7 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
     });
   }
 
-  // check for data field
+  // check for data
   if (!data) {
     return res.status(400).json({
       message: `data is required.`,
@@ -85,6 +87,7 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
     });
   }
 
+  // check for condition field in data provided
   if (!field in data) {
     return res.status(400).json({
       message: `field ${field} is missing from data.`,
@@ -119,6 +122,7 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
   // perform rule validation
   const isValid = validator(condition, condition_value, field_value);
 
+  // check for validation success/fail
   if (!isValid) {
     return res.status(400).json({
       message: `field ${field} failed validation.`,
@@ -134,6 +138,7 @@ exports.validateRule = asyncHandler(async (req, res, next) => {
     });
   }
 
+  // client response in jsend format
   return res.status(200).json({
     message: `field ${field} successfully validated.`,
     status: "success",

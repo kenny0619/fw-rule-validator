@@ -1,3 +1,4 @@
+// create a validation function
 const validator = (condition, condition_value, field_value) => {
   let isValid;
   switch (condition) {

@@ -15,6 +15,8 @@ app.use(cookieParser());
 
 // Route files
 app.use(require("./routes"));
+
+// use error handling middleware
 app.use(require("./middleware/error"));
 
 // export app to http server ('./bin/www')
