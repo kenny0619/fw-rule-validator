@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "8c3ce1d1-c36e-4c69-9e6c-944bde1937ac",
+		"name": "Flutterwave Task",
+		"description": "Flutterwave Nodejs Interview Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ENDPOINTS",
+			"item": [
+				{
+					"name": "Validate Rule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rule\": {\r\n        \"field\": \"missions\",\r\n        \"condition\": \"gt\",\r\n        \"condition_value\": 5\r\n    },\r\n    \"data\": {\r\n        \"name\": \"James Holden\",\r\n        \"crew\": \"Rocinante\",\r\n        \"age\": 34,\r\n        \"position\": \"Captain\",\r\n        \"missions\": \"12345\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ibukunoluwaflwsoln.herokuapp.com/validate-rule",
+							"protocol": "https",
+							"host": [
+								"ibukunoluwaflwsoln",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"validate-rule"
+							]
+						},
+						"description": "endpoint to validate rule"
+					},
+					"response": []
+				},
+				{
+					"name": "Base Route",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ibukunoluwaflwsoln.herokuapp.com/",
+							"protocol": "https",
+							"host": [
+								"ibukunoluwaflwsoln",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "This is the base route of the api"
+					},
+					"response": []
+				}
+			],
+			"description": "The endpoints for the nodejs backend interview/ technical skills task"
+		}
+	]
+}
